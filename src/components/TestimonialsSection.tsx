@@ -1,6 +1,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Quote } from "lucide-react";
+import { useTilt } from "@/hooks/useTilt";
 
 const testimonials = [
   {
@@ -19,44 +20,58 @@ const testimonials = [
   },
 ];
 
+const TestimonialCard = ({ t, i, isInView }: { t: typeof testimonials[0]; i: number; isInView: boolean }) => {
+  const { ref, onMouseMove, onMouseLeave } = useTilt(4);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ delay: i * 0.15, duration: 0.5 }}
+    >
+      <div
+        ref={ref}
+        onMouseMove={onMouseMove}
+        onMouseLeave={onMouseLeave}
+        className="card-3d p-6 md:p-8 h-full"
+      >
+        <div className="relative z-10">
+          <Quote size={32} className="text-primary/20 mb-4" />
+          <p className="text-foreground text-sm leading-relaxed mb-6 italic">
+            "{t.quote}"
+          </p>
+          <div className="border-t border-border pt-4">
+            <p className="font-heading text-lg text-foreground">{t.name}</p>
+            <p className="text-xs text-primary font-medium mt-0.5">{t.role}</p>
+            <p className="text-xs text-muted-foreground mt-0.5">{t.relationship}</p>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
 const TestimonialsSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="section-padding" ref={ref}>
-      <div className="max-w-5xl mx-auto">
+    <section className="section-padding relative" ref={ref}>
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/20 to-background pointer-events-none" />
+      <div className="max-w-5xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           className="mb-14"
         >
-          <span className="text-sm font-semibold text-primary uppercase tracking-widest">References</span>
-          <h2 className="font-heading text-3xl md:text-4xl text-foreground mt-2">
-            What Colleagues Say
-          </h2>
+          <span className="text-xs font-semibold text-primary uppercase tracking-[0.3em]">References</span>
+          <h2 className="font-heading text-4xl md:text-5xl text-foreground mt-3">What Colleagues Say</h2>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-6">
           {testimonials.map((t, i) => (
-            <motion.div
-              key={t.name}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: i * 0.15, duration: 0.5 }}
-              className="glass-card-elevated p-6 md:p-8 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
-            >
-              <Quote size={28} className="text-primary/30 mb-4" />
-              <p className="text-foreground text-sm leading-relaxed mb-6 italic">
-                "{t.quote}"
-              </p>
-              <div className="border-t border-border pt-4">
-                <p className="font-heading text-base text-foreground">{t.name}</p>
-                <p className="text-xs text-primary font-medium mt-0.5">{t.role}</p>
-                <p className="text-xs text-muted-foreground mt-0.5">{t.relationship}</p>
-              </div>
-            </motion.div>
+            <TestimonialCard key={t.name} t={t} i={i} isInView={isInView} />
           ))}
         </div>
       </div>

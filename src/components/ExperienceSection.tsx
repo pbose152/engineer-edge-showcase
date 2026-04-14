@@ -76,58 +76,59 @@ const ExperienceCard = ({ exp, i, isInView }: { exp: typeof experiences[0]; i: n
 
   return (
     <motion.div
-      key={exp.company}
       initial={{ opacity: 0, x: -20 }}
       animate={isInView ? { opacity: 1, x: 0 } : {}}
       transition={{ delay: i * 0.15, duration: 0.5 }}
       className="relative md:pl-14"
     >
       {/* Timeline dot */}
-      <div className="absolute left-[12px] top-1 w-[16px] h-[16px] rounded-full border-[3px] border-primary bg-background hidden md:block" />
+      <div className="absolute left-[12px] top-2 w-4 h-4 rounded-full border-[3px] border-primary bg-background hidden md:block shadow-sm shadow-primary/30" />
 
-      <div className="glass-card-elevated p-6 hover:shadow-lg transition-all duration-300">
-        <div className="flex flex-wrap items-start justify-between gap-2 mb-3">
-          <div>
-            <h3 className="font-heading text-xl text-foreground">{exp.title}</h3>
-            <div className="flex items-center gap-2 text-sm text-primary font-medium mt-1">
-              <Briefcase size={14} />
-              {exp.company}
+      <div className="card-3d p-6 hover:-translate-y-1 transition-all duration-400">
+        <div className="relative z-10">
+          <div className="flex flex-wrap items-start justify-between gap-2 mb-3">
+            <div>
+              <h3 className="font-heading text-xl text-foreground">{exp.title}</h3>
+              <div className="flex items-center gap-2 text-sm text-primary font-medium mt-1">
+                <Briefcase size={14} />
+                {exp.company}
+              </div>
+              <p className="text-xs text-muted-foreground mt-0.5">{exp.department}</p>
             </div>
-            <p className="text-xs text-muted-foreground mt-0.5">{exp.department}</p>
+            <div className="text-right text-sm text-muted-foreground">
+              <div className="flex items-center gap-1"><Calendar size={12} /> {exp.period}</div>
+              <div className="flex items-center gap-1 mt-1"><MapPin size={12} /> {exp.location}</div>
+            </div>
           </div>
-          <div className="text-right text-sm text-muted-foreground">
-            <div className="flex items-center gap-1"><Calendar size={12} /> {exp.period}</div>
-            <div className="flex items-center gap-1 mt-1"><MapPin size={12} /> {exp.location}</div>
-          </div>
-        </div>
-        <ul className="space-y-2 mt-4">
-          {exp.highlights.map((h, j) => (
-            <li key={j} className="flex items-start gap-2 text-sm text-muted-foreground">
-              <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0" />
-              {h}
-            </li>
-          ))}
-          {expanded && exp.expandedHighlights.map((h, j) => (
-            <motion.li
-              key={`exp-${j}`}
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              className="flex items-start gap-2 text-sm text-muted-foreground"
+          <ul className="space-y-2 mt-4">
+            {exp.highlights.map((h, j) => (
+              <li key={j} className="flex items-start gap-2 text-sm text-muted-foreground">
+                <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0 shadow-sm shadow-primary/50" />
+                {h}
+              </li>
+            ))}
+            {expanded && exp.expandedHighlights.map((h, j) => (
+              <motion.li
+                key={`exp-${j}`}
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                className="flex items-start gap-2 text-sm text-muted-foreground"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0 shadow-sm shadow-primary/50" />
+                {h}
+              </motion.li>
+            ))}
+          </ul>
+          {hasMore && (
+            <button
+              onClick={() => setExpanded(!expanded)}
+              className="mt-4 flex items-center gap-1 text-xs font-medium text-primary hover:text-primary/80 transition-colors"
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0" />
-              {h}
-            </motion.li>
-          ))}
-        </ul>
-        {hasMore && (
-          <button
-            onClick={() => setExpanded(!expanded)}
-            className="mt-4 flex items-center gap-1 text-xs font-medium text-primary hover:text-primary/80 transition-colors"
-          >
-            {expanded ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
-            {expanded ? "Show less" : `Show ${exp.expandedHighlights.length} more`}
-          </button>
-        )}
+              {expanded ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+              {expanded ? "Show less" : `Show ${exp.expandedHighlights.length} more`}
+            </button>
+          )}
+        </div>
       </div>
     </motion.div>
   );
@@ -146,13 +147,15 @@ const ExperienceSection = () => {
           transition={{ duration: 0.6 }}
           className="mb-14"
         >
-          <span className="text-sm font-semibold text-primary uppercase tracking-widest">Career</span>
-          <h2 className="font-heading text-3xl md:text-4xl text-foreground mt-2">Experience</h2>
-          <p className="text-muted-foreground mt-2 text-sm">3 industries · Paper Coating · Discrete Fabrication · Automotive Components</p>
+          <span className="text-xs font-semibold text-primary uppercase tracking-[0.3em]">Career</span>
+          <h2 className="font-heading text-4xl md:text-5xl text-foreground mt-3">Experience</h2>
+          <p className="text-muted-foreground mt-2 text-sm">
+            3 industries · Paper Coating · Discrete Fabrication · Automotive Components
+          </p>
         </motion.div>
 
         <div className="relative">
-          <div className="absolute left-[19px] top-2 bottom-2 w-[2px] bg-border hidden md:block" />
+          <div className="absolute left-[19px] top-2 bottom-2 w-[2px] bg-gradient-to-b from-primary/50 via-border to-transparent hidden md:block" />
           <div className="space-y-10">
             {experiences.map((exp, i) => (
               <ExperienceCard key={exp.company + exp.title} exp={exp} i={i} isInView={isInView} />

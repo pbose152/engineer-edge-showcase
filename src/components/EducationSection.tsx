@@ -33,7 +33,7 @@ const EducationSection = () => {
   const [showCoursework, setShowCoursework] = useState(false);
 
   return (
-    <section className="section-padding bg-secondary/50" ref={ref}>
+    <section id="education" className="section-padding" ref={ref}>
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -41,8 +41,8 @@ const EducationSection = () => {
           transition={{ duration: 0.6 }}
           className="mb-14"
         >
-          <span className="text-sm font-semibold text-primary uppercase tracking-widest">Education</span>
-          <h2 className="font-heading text-3xl md:text-4xl text-foreground mt-2">Academic Background</h2>
+          <span className="text-xs font-semibold text-primary uppercase tracking-[0.3em]">Education</span>
+          <h2 className="font-heading text-4xl md:text-5xl text-foreground mt-3">Academic Background</h2>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-6">
@@ -52,19 +52,19 @@ const EducationSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: i * 0.15, duration: 0.5 }}
-              className="glass-card-elevated p-6 hover:shadow-lg transition-all duration-300"
+              className="card-3d p-6"
             >
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+              <div className="relative z-10 flex items-start gap-4">
+                <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0">
                   <GraduationCap size={20} className="text-primary" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="font-heading text-lg text-foreground">{ed.degree}</h3>
+                  <h3 className="font-heading text-xl text-foreground">{ed.degree}</h3>
                   <p className="text-sm text-primary font-medium">{ed.field}</p>
                   <p className="text-sm text-muted-foreground mt-1">{ed.school}</p>
                   <p className="text-xs text-muted-foreground mt-1">
                     {ed.period} · {ed.location}
-                    {ed.gpa && <span className="ml-2 font-medium text-foreground">GPA: {ed.gpa}</span>}
+                    {ed.gpa && <span className="ml-2 font-semibold text-foreground">GPA: {ed.gpa}</span>}
                   </p>
                   {ed.coursework.length > 0 && (
                     <div className="mt-3">
@@ -82,7 +82,7 @@ const EducationSection = () => {
                           className="flex flex-wrap gap-1.5 mt-2"
                         >
                           {ed.coursework.map((c) => (
-                            <span key={c} className="text-xs px-2 py-1 rounded-full bg-secondary text-muted-foreground">
+                            <span key={c} className="text-xs px-2 py-1 rounded-full bg-secondary text-muted-foreground border border-border">
                               {c}
                             </span>
                           ))}
