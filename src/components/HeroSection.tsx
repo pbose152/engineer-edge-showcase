@@ -95,7 +95,7 @@ const HeroSection = () => {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 border border-border rounded-lg font-medium text-sm text-foreground hover:bg-secondary hover:border-primary/30 hover:-translate-y-0.5 transition-all duration-300"
               >
-                <Linkedin size={16} />
+                <ExternalLink size={16} />
                 LinkedIn
               </a>
               <a
