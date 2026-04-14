@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowDown, Mail, Linkedin } from "lucide-react";
+import { ArrowDown, Mail, ExternalLink } from "lucide-react";
 import pankajPhoto from "@/assets/pankaj-photo.jpg";
 
 const metrics = [

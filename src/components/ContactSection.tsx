@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Mail, Linkedin, MapPin } from "lucide-react";
+import { Mail, ExternalLink, MapPin } from "lucide-react";
 
 const ContactSection = () => {
   const ref = useRef(null);
