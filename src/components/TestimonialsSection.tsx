@@ -56,7 +56,7 @@ const TestimonialsSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="section-padding relative" ref={ref}>
+    <section id="recommendations" className="section-padding relative" ref={ref}>
       <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/20 to-background pointer-events-none" />
       <div className="max-w-5xl mx-auto relative z-10">
         <motion.div
