@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Mail, ExternalLink, MapPin } from "lucide-react";
+import { Mail, ExternalLink, MapPin, Phone } from "lucide-react";
 
 const ContactSection = () => {
   const ref = useRef(null);
@@ -25,19 +25,26 @@ const ContactSection = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href="mailto:bosepankaj.ie@gmail.com"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium text-sm hover:opacity-90 transition-opacity"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium text-sm hover:opacity-90 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg"
             >
               <Mail size={16} />
               bosepankaj.ie@gmail.com
             </a>
             <a
+              href="tel:+18573973680"
+              className="inline-flex items-center gap-2 px-6 py-3 border border-border rounded-lg font-medium text-sm text-foreground hover:bg-secondary transition-all duration-200 hover:-translate-y-0.5"
+            >
+              <Phone size={16} />
+              (857) 397-3680
+            </a>
+            <a
               href="https://linkedin.com/in/pankaj-bose-95599a205"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 border border-border rounded-lg font-medium text-sm text-foreground hover:bg-secondary transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 border border-border rounded-lg font-medium text-sm text-foreground hover:bg-secondary transition-all duration-200 hover:-translate-y-0.5"
             >
               <ExternalLink size={16} />
-              LinkedIn Profile
+              LinkedIn
             </a>
           </div>
 

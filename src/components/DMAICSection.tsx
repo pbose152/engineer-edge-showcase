@@ -1,12 +1,11 @@
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { ChevronRight, CheckCircle2 } from "lucide-react";
 
 const phases = [
   {
     id: "define",
     label: "Define",
-    color: "bg-primary",
     summary: "Scoped the problem and set project goals",
     details: [
       "Identified startup waste on the 3UC UltraCast coating line as a key cost driver",
@@ -18,35 +17,32 @@ const phases = [
   {
     id: "measure",
     label: "Measure",
-    color: "bg-primary",
     summary: "Established baselines from production data",
     details: [
       "Collected and cleaned 100,000+ rows from PI Vision and Braincube",
       "Analyzed 339 startup events across multiple product lines",
-      "Established statistical baselines for waste metrics",
+      "Established statistical baselines for waste metrics using Python and Minitab",
       "Mapped key process parameters: roll speed, coatweight, viscosity",
     ],
   },
   {
     id: "analyze",
     label: "Analyze",
-    color: "bg-primary",
     summary: "Identified root causes through statistical analysis",
     details: [
-      "Performed ANOVA and correlation analysis in Minitab",
-      "Conducted hypothesis testing to validate factor significance",
-      "Identified that AutoTurnup reduces waste by ~12%",
+      "Performed ANOVA testing (p=0.895 for shift effect — no significant difference)",
+      "Correlation analysis: r=0.905 for NET_LBS vs Time, confirming linear relationship",
+      "Identified AutoTurnup as critical variable reducing waste by ~12%",
       "Analyzed centerlining data to find root causes of startup inefficiencies",
     ],
   },
   {
     id: "improve",
     label: "Improve",
-    color: "bg-primary",
     summary: "Implemented solutions and validated results",
     details: [
-      "Created width-specific targets for different product sizes",
-      "Developed operator training recommendations based on data",
+      "Created width-specific targets: 56\" at 186 lbs, 65.5\" at 198 lbs, 86.5\" at 265 lbs",
+      "Developed operator training recommendations based on Pareto analysis",
       "Validated 18% waste reduction on one coater",
       "Projected $76K+ in annual cost savings",
     ],
@@ -54,16 +50,29 @@ const phases = [
   {
     id: "control",
     label: "Control",
-    color: "bg-muted",
     summary: "Built sustainability systems for lasting impact",
     details: [
-      "Built SPC dashboards and control charts for ongoing monitoring",
+      "Built SPC dashboards and I-MR control charts for ongoing monitoring",
       "Developed standardized operating procedures for startup processes",
-      "Created weekly executive summary reporting framework",
-      "Established process capability baselines for sustained stability",
+      "Created weekly SQC executive reports tracking viscosity, coatweight, and glycol metrics",
+      "Established process capability baselines for sustained stability across 3 coating lines",
     ],
   },
 ];
+
+const AnimatedStat = ({ val, label, inView }: { val: string; label: string; inView: boolean }) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={inView ? { opacity: 1, scale: 1 } : {}}
+      transition={{ duration: 0.5, type: "spring" }}
+      className="glass-card-elevated p-4 text-center hover:-translate-y-1 transition-transform duration-300"
+    >
+      <div className="text-xl md:text-2xl font-bold text-primary font-heading">{val}</div>
+      <div className="text-xs text-muted-foreground mt-1">{label}</div>
+    </motion.div>
+  );
+};
 
 const DMAICSection = () => {
   const ref = useRef(null);
@@ -91,24 +100,12 @@ const DMAICSection = () => {
         </motion.div>
 
         {/* Results banner */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.2, duration: 0.5 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10"
-        >
-          {[
-            { val: "$76K+", lbl: "Annual Savings" },
-            { val: "18%", lbl: "Waste Reduction" },
-            { val: "339", lbl: "Events Analyzed" },
-            { val: "~12%", lbl: "AutoTurnup Impact" },
-          ].map((m) => (
-            <div key={m.lbl} className="glass-card-elevated p-4 text-center">
-              <div className="text-xl md:text-2xl font-bold text-primary font-heading">{m.val}</div>
-              <div className="text-xs text-muted-foreground mt-1">{m.lbl}</div>
-            </div>
-          ))}
-        </motion.div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+          <AnimatedStat val="$76K+" label="Projected Annual Savings" inView={isInView} />
+          <AnimatedStat val="18%" label="Validated Waste Reduction" inView={isInView} />
+          <AnimatedStat val="339" label="Events Analyzed" inView={isInView} />
+          <AnimatedStat val="~12%" label="AutoTurnup Impact" inView={isInView} />
+        </div>
 
         {/* DMAIC Navigator */}
         <motion.div
@@ -122,13 +119,15 @@ const DMAICSection = () => {
               <button
                 key={phase.id}
                 onClick={() => setActivePhase(phase.id)}
-                className={`flex items-center gap-1.5 px-4 py-2.5 rounded-lg text-sm font-semibold transition-all whitespace-nowrap ${
+                className={`flex items-center gap-1.5 px-4 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 whitespace-nowrap ${
                   activePhase === phase.id
-                    ? "bg-primary text-primary-foreground shadow-md"
-                    : "bg-card text-muted-foreground hover:text-foreground hover:bg-muted"
+                    ? "bg-primary text-primary-foreground shadow-md scale-[1.02]"
+                    : "bg-card text-muted-foreground hover:text-foreground hover:bg-muted hover:scale-[1.01]"
                 }`}
               >
-                <span className="w-5 h-5 rounded-full bg-primary-foreground/20 flex items-center justify-center text-xs">
+                <span className={`w-5 h-5 rounded-full flex items-center justify-center text-xs ${
+                  activePhase === phase.id ? "bg-primary-foreground/20" : "bg-muted"
+                }`}>
                   {i + 1}
                 </span>
                 {phase.label}
