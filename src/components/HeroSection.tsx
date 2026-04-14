@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
-import { ArrowDown, Mail, Linkedin, Phone } from "lucide-react";
+import { ArrowDown, Mail, ExternalLink, Phone } from "lucide-react";
 import pankajPhoto from "@/assets/pankaj-photo.jpg";
 
 const metrics = [
