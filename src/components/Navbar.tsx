@@ -9,7 +9,6 @@ const navItems = [
   { label: "Skills", href: "#skills" },
   { label: "Recommendations", href: "#recommendations" },
   { label: "Education", href: "#education" },
-  { label: "Contact", href: "#contact" },
 ];
 
 const Navbar = () => {
@@ -48,6 +47,12 @@ const Navbar = () => {
               {item.label}
             </a>
           ))}
+          <a
+            href="#contact"
+            className="ml-4 text-sm font-medium px-4 py-2 rounded-lg bg-primary text-primary-foreground hover:opacity-90 transition-opacity"
+          >
+            Contact
+          </a>
         </div>
 
         <button
