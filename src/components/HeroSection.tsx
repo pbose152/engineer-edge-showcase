@@ -115,12 +115,12 @@ const HeroSection = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 + i * 0.12, duration: 0.5 }}
-                  className="card-3d p-4 text-center group"
+                  className="card-3d p-4 text-center group flex flex-col items-center justify-center min-h-[90px]"
                 >
-                  <div className="text-2xl md:text-3xl font-bold text-primary font-heading relative z-10">
+                  <div className="text-2xl md:text-3xl font-bold text-primary font-heading relative z-10 leading-tight">
                     <AnimatedCounter value={m.value} prefix={m.prefix} suffix={m.suffix} inView={isInView} />
                   </div>
-                  <div className="text-[11px] text-muted-foreground mt-1 leading-tight relative z-10">
+                  <div className="text-[11px] text-muted-foreground mt-2 leading-tight relative z-10">
                     {m.label}
                   </div>
                 </motion.div>
