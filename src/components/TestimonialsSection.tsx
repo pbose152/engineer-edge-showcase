@@ -5,15 +5,17 @@ import { Quote } from "lucide-react";
 const testimonials = [
   {
     name: "Ellie LeDuc",
-    role: "Direct Manager at Sappi North America",
+    role: "Process Engineer, Sappi North America",
+    relationship: "Direct Manager · 6+ months · January 2026",
     quote:
-      "Pankaj consistently outperformed other co-ops and delivered impeccable quality work. His ability to take on complex projects with minimal supervision and produce data-driven results was outstanding. He brought a rare combination of analytical rigor and practical shop-floor understanding.",
+      "It is rare to have a co-op as talented and hardworking as Pankaj. His efforts and ability to analyze data are enviable and deserving of recognition. Pankaj quickly outperformed co-ops I have worked with in the past, working through complex projects faster than I could keep up with assigning them. Despite his speed, the quality of work was always impeccable with minimal errors. I highly recommend Pankaj for any engineering role. He is a true asset.",
   },
   {
     name: "Dheeraj Varapana",
-    role: "Six Sigma Black Belt, Team Colleague",
+    role: "ASQ CQE, Certified Lean Six Sigma Black Belt",
+    relationship: "Team Colleague, Sappi North America · January 2026",
     quote:
-      "Working with Pankaj was a great experience. His dedication to continuous improvement and his methodical approach to problem-solving made him an invaluable team member. He has a natural talent for translating data insights into actionable process improvements.",
+      "He has done a good job on his daily assignments, worked on the LSS project, and understood the concepts with a real-time project. He has been always passionate to learn new things, asking questions and interacting with operators. I would recommend Pankaj.",
   },
 ];
 
@@ -43,15 +45,16 @@ const TestimonialsSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: i * 0.15, duration: 0.5 }}
-              className="glass-card-elevated p-6 md:p-8"
+              className="glass-card-elevated p-6 md:p-8 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
             >
-              <Quote size={24} className="text-primary/30 mb-4" />
+              <Quote size={28} className="text-primary/30 mb-4" />
               <p className="text-foreground text-sm leading-relaxed mb-6 italic">
                 "{t.quote}"
               </p>
               <div className="border-t border-border pt-4">
                 <p className="font-heading text-base text-foreground">{t.name}</p>
-                <p className="text-xs text-muted-foreground mt-0.5">{t.role}</p>
+                <p className="text-xs text-primary font-medium mt-0.5">{t.role}</p>
+                <p className="text-xs text-muted-foreground mt-0.5">{t.relationship}</p>
               </div>
             </motion.div>
           ))}

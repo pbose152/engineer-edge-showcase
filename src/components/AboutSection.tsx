@@ -1,5 +1,4 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Factory, BarChart3, Users, Target } from "lucide-react";
 
@@ -7,22 +6,22 @@ const capabilities = [
   {
     icon: Factory,
     title: "Manufacturing Process Optimization",
-    description: "Hands-on experience in coating, fabrication, and brake pad manufacturing. Comfortable on the shop floor and in the control room.",
+    description: "Hands-on experience across paper coating, stainless steel fabrication, and automotive brake manufacturing. Comfortable on the shop floor and in the control room.",
   },
   {
     icon: Target,
     title: "Six Sigma & Lean Methodology",
-    description: "DMAIC projects, root cause analysis, DFMEA, 5S, Kanban. Green Belt certified with real project savings to show.",
+    description: "Led DMAIC projects, root cause analysis, DFMEA, 5S, Kanban, and Value Stream Mapping. IISE Green Belt certified with validated project savings.",
   },
   {
     icon: BarChart3,
     title: "Statistical Process Control",
-    description: "SPC charts, process capability analysis, ANOVA, hypothesis testing. Minitab, Python, and Excel for data-driven decisions.",
+    description: "SPC charts, process capability analysis, ANOVA (p=0.895), correlation analysis (r=0.905), hypothesis testing, DOE. Minitab, Python, and Excel for data-driven decisions.",
   },
   {
     icon: Users,
     title: "Cross-Functional Collaboration",
-    description: "Led projects with operators, engineers, and leadership. Built SOPs, training frameworks, and executive reporting systems.",
+    description: "Partnered with operators, engineers, and leadership. Built SOPs, onboarding frameworks (68+ tasks), and weekly executive reporting systems.",
   },
 ];
 
@@ -44,7 +43,7 @@ const AboutSection = () => {
             Built for the Manufacturing Floor
           </h2>
           <p className="text-muted-foreground mt-4 max-w-2xl text-base leading-relaxed">
-            Two years of manufacturing experience in India, followed by a Six Sigma DMAIC project at Sappi North America. I bridge advanced analytics with practical shop floor application.
+            Results-driven Process Engineer with hands-on experience in high-volume manufacturing and continuous improvement across paper coating, discrete fabrication, and automotive components. Proven ability to partner with operators, engineers, and leadership to stabilize processes, improve yield, and standardize best practices.
           </p>
         </motion.div>
 
@@ -55,10 +54,10 @@ const AboutSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.1 + i * 0.1, duration: 0.5 }}
-              className="glass-card-elevated p-6 hover:shadow-lg transition-shadow duration-300"
+              className="glass-card-elevated p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group"
             >
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors duration-300">
                   <cap.icon size={20} className="text-primary" />
                 </div>
                 <div>
