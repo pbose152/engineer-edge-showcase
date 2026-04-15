@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
-import { Mail, ExternalLink, Phone } from "lucide-react";
+import { ArrowDown, Mail, ExternalLink, Phone } from "lucide-react";
 import pankajPhoto from "@/assets/pankaj-photo.jpg";
 
 const metrics = [
@@ -166,6 +166,19 @@ const HeroSection = () => {
                 3 Industries
               </motion.div>
             </div>
+          </motion.div>
+
+          {/* Scroll indicator */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.5 }}
+            className="flex items-center justify-center gap-2 text-muted-foreground mt-8"
+          >
+            <span className="text-xs tracking-[0.3em] uppercase">Scroll</span>
+            <motion.div animate={{ y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 2 }}>
+              <ArrowDown size={16} />
+            </motion.div>
           </motion.div>
         </div>
       </div>
