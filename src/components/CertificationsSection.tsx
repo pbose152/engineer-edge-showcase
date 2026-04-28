@@ -53,7 +53,7 @@ const CertCard = ({ cert, i, isInView }: { cert: typeof certs[0]; i: number; isI
         ref={ref}
         onMouseMove={onMouseMove}
         onMouseLeave={onMouseLeave}
-        className={`card-3d p-6 text-center h-full ${cert.featured ? "ring-1 ring-primary/40" : ""}`}
+        className={`card-3d p-6 text-center h-full !overflow-visible relative ${cert.featured ? "ring-1 ring-primary/40 mt-3" : ""}`}
       >
         {cert.featured && (
           <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-xs px-3 py-1 rounded-full font-semibold z-20 shadow-lg shadow-primary/20">
@@ -95,7 +95,7 @@ const CertificationsSection = () => {
           <h2 className="font-heading text-4xl md:text-5xl text-foreground mt-3">Certifications</h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6 mb-8">
+        <div className="grid md:grid-cols-3 gap-6 mb-8 pt-4 overflow-visible">
           {certs.map((cert, i) => (
             <CertCard key={cert.name} cert={cert} i={i} isInView={isInView} />
           ))}
