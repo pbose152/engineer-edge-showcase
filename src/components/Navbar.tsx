@@ -4,10 +4,10 @@ import { Menu, X } from "lucide-react";
 
 const navItems = [
   { label: "About", href: "#about" },
-  { label: "Sappi Projects", href: "#dmaic" },
+  { label: "Featured Project", href: "#dmaic" },
   { label: "Experience", href: "#experience" },
-  { label: "Skills", href: "#skills" },
   { label: "Recommendations", href: "#recommendations" },
+  { label: "Skills", href: "#skills" },
   { label: "Education", href: "#education" },
 ];
 
@@ -42,7 +42,7 @@ const Navbar = () => {
             <a
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-muted-foreground hover:text-foreground px-3 py-2 rounded-lg hover:bg-secondary/50 transition-all duration-200"
+              className="text-base font-semibold text-white hover:text-primary px-3 py-2 rounded-lg hover:bg-secondary/50 transition-all duration-200"
             >
               {item.label}
             </a>
@@ -77,7 +77,7 @@ const Navbar = () => {
                   key={item.href}
                   href={item.href}
                   onClick={() => setMobileOpen(false)}
-                  className="text-sm font-medium text-muted-foreground hover:text-foreground py-2 transition-colors"
+                  className="text-base font-semibold text-white hover:text-primary py-2 transition-colors"
                 >
                   {item.label}
                 </a>

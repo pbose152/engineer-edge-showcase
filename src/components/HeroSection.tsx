@@ -39,15 +39,11 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen flex items-center section-padding pt-24 overflow-hidden" ref={ref}>
-      {/* Grid background */}
       <div className="absolute inset-0 grid-bg opacity-40" />
-      
-      {/* Radial glow */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto w-full relative z-10">
         <div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-center">
-          {/* Left content — 3 cols */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -71,17 +67,18 @@ const HeroSection = () => {
             </h1>
 
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-4 max-w-xl">
-              Industrial engineer driving{" "}
-              <span className="text-foreground font-medium">measurable process improvements</span>{" "}
-              in high-volume manufacturing. Hands-on across{" "}
-              <span className="text-foreground font-medium">paper coating, discrete fabrication, and automotive</span>.
+              Industrial engineer who{" "}
+              <span className="text-foreground font-semibold">chases variation in the data</span>{" "}
+              and traces it back to the line. Six months at{" "}
+              <span className="text-foreground font-semibold">Sappi on the 3UC coater</span>. Three industries:{" "}
+              <span className="text-foreground font-semibold">paper coating, discrete fabrication, automotive</span>.
             </p>
 
             <p className="text-sm text-muted-foreground mb-10 max-w-xl">
               MS Industrial Engineering · Northeastern University · GPA 3.7/4.0 · May 2026
             </p>
 
-            <div className="flex flex-wrap gap-3 mb-14">
+            <div className="flex flex-wrap gap-3 mb-3">
               <a
                 href="mailto:bosepankaj.ie@gmail.com"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium text-sm hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-0.5 transition-all duration-300"
@@ -107,28 +104,34 @@ const HeroSection = () => {
               </a>
             </div>
 
-            {/* Metrics */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {metrics.map((m, i) => (
-                <motion.div
-                  key={m.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 + i * 0.12, duration: 0.5 }}
-                  className="card-3d p-4 text-center group flex flex-col items-center justify-center min-h-[90px]"
-                >
-                  <div className="text-2xl md:text-3xl font-bold text-primary font-heading relative z-10 leading-tight">
-                    <AnimatedCounter value={m.value} prefix={m.prefix} suffix={m.suffix} inView={isInView} />
-                  </div>
-                  <div className="text-[11px] text-muted-foreground mt-2 leading-tight relative z-10">
-                    {m.label}
-                  </div>
-                </motion.div>
-              ))}
+            <p className="text-xs text-muted-foreground text-center md:text-left mb-10 max-w-xl">
+              Available May 2026 · Process / Quality / Continuous Improvement Engineering
+            </p>
+
+            {/* Metrics — anchored visually to hero */}
+            <div className="rounded-2xl border-t border-primary/20 bg-primary/[0.03] pt-5 -mt-2">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {metrics.map((m, i) => (
+                  <motion.div
+                    key={m.label}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5 + i * 0.12, duration: 0.5 }}
+                    className="card-3d p-4 text-center group flex flex-col items-center justify-center min-h-[90px]"
+                  >
+                    <div className="text-2xl md:text-3xl font-bold text-primary font-heading relative z-10 leading-tight">
+                      <AnimatedCounter value={m.value} prefix={m.prefix} suffix={m.suffix} inView={isInView} />
+                    </div>
+                    <div className="text-[11px] text-muted-foreground mt-2 leading-tight relative z-10">
+                      {m.label}
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </motion.div>
 
-          {/* Right — photo — 2 cols */}
+          {/* Right — photo */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -142,11 +145,9 @@ const HeroSection = () => {
                   alt="Pankaj Bose - Process Engineer"
                   className="w-full h-full object-cover object-top"
                 />
-                {/* Overlay gradient */}
                 <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
               </div>
 
-              {/* Floating badges */}
               <motion.div
                 initial={{ opacity: 0, x: -30 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -160,7 +161,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, x: 30 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 1.2, duration: 0.5, type: "spring" }}
-                className="absolute -top-3 -right-3 bg-card border border-border px-3 py-2 rounded-xl text-xs font-bold text-foreground shadow-xl animate-float"
+                className="absolute -top-3 -right-3 bg-card border border-primary/40 text-primary px-3 py-2 rounded-xl text-xs font-bold shadow-xl animate-float"
                 style={{ animationDelay: "2s" }}
               >
                 3 Industries
@@ -168,7 +169,6 @@ const HeroSection = () => {
             </div>
           </motion.div>
 
-          {/* Scroll indicator */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
