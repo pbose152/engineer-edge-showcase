@@ -301,12 +301,20 @@ const DMAICSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 justify-items-center">
-          {sappiProjects.map((proj, i) => (
-            <div key={proj.title} className={`w-full ${i === 3 ? "lg:col-start-1 lg:col-end-2 lg:ml-auto" : ""} ${i === 4 ? "lg:col-end-4 lg:mr-auto" : ""}`}>
-              <ProjectCard proj={proj} i={i} isInView={isInView} />
-            </div>
-          ))}
+        <div className="grid md:grid-cols-2 lg:grid-cols-6 gap-5">
+          {sappiProjects.map((proj, i) => {
+            const span =
+              i < 3
+                ? "lg:col-span-2"
+                : i === 3
+                  ? "lg:col-span-2 lg:col-start-2"
+                  : "lg:col-span-2";
+            return (
+              <div key={proj.title} className={`md:col-span-1 ${span}`}>
+                <ProjectCard proj={proj} i={i} isInView={isInView} />
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
