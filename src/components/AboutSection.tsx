@@ -7,25 +7,25 @@ const capabilities = [
   {
     icon: Factory,
     title: "Manufacturing Process Optimization",
-    description: "Hands-on experience across paper coating, stainless steel fabrication, and automotive brake manufacturing. Comfortable on the shop floor and in the control room.",
+    description: "DMAIC startup waste project on Sappi's 3UC coater. DFMEA and customer-spec drawings at Raghav steel fabrication. SAP PP scheduling on a brake pad line at MAT. Three industries, one approach: stabilize first, then optimize.",
     accent: "from-primary/20 to-transparent",
   },
   {
     icon: Target,
     title: "Six Sigma & Lean Methodology",
-    description: "Led DMAIC projects, root cause analysis, DFMEA, 5S, Kanban, and Value Stream Mapping. IISE Green Belt certified with validated project savings.",
+    description: "Six Sigma Green Belt (IISE) and Lean Academy trained at Northeastern. DMAIC at Sappi validated $76K projected annual savings. DFMEA at Raghav cut defects 5%. Kanban and Gemba at MAT lifted line efficiency 4%.",
     accent: "from-accent/20 to-transparent",
   },
   {
     icon: BarChart3,
     title: "Statistical Process Control",
-    description: "SPC charts, capability analysis, ANOVA, correlation analysis, hypothesis testing, DOE. Minitab, Python, and Excel for data-driven decisions.",
+    description: "ANOVA on shift, operator, and grade effects. Capability analyses on coatweight, viscosity, and NET_LBS. 100,000+ rows of production data through Python and Minitab. The numbers point to the cause.",
     accent: "from-primary/20 to-transparent",
   },
   {
     icon: Users,
     title: "Cross-Functional Collaboration",
-    description: "Partnered with operators, engineers, and leadership. Built SOPs, onboarding frameworks, and weekly executive reporting systems.",
+    description: "Wrote SOPs for daily quality reports and weekly executive summaries. Built an 8-day onboarding path incoming co-ops still use. Ran the LSS project review cadence with my Black Belt mentor and direct manager.",
     accent: "from-accent/20 to-transparent",
   },
 ];
@@ -72,12 +72,11 @@ const AboutSection = () => {
           transition={{ duration: 0.6 }}
           className="mb-16"
         >
-          <span className="text-xs font-semibold text-primary uppercase tracking-[0.3em]">What I Do</span>
-          <h2 className="font-heading text-4xl md:text-5xl text-foreground mt-3">
+          <h2 className="font-heading text-4xl md:text-5xl text-foreground">
             Built for the Manufacturing Floor
           </h2>
           <p className="text-muted-foreground mt-4 max-w-2xl text-base leading-relaxed">
-            Results-driven Process Engineer with hands-on experience in high-volume manufacturing and continuous improvement. Proven ability to partner with operators, engineers, and leadership to stabilize processes, improve yield, and standardize best practices.
+            Six months at Sappi taught me to chase variation through the data and back to the operator who saw it first. The work I do best is finding what's drifting, sizing the impact, and building something that holds after I leave.
           </p>
         </motion.div>
 

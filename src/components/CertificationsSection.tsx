@@ -4,6 +4,7 @@ import { Award } from "lucide-react";
 import sixSigmaBadge from "@/assets/six-sigma-badge.png";
 import aiBadge from "@/assets/ai-badge.png";
 import leadershipBadge from "@/assets/leadership-badge.png";
+import leanAcademyBadge from "@/assets/lean-academy-badge.png";
 import { useTilt } from "@/hooks/useTilt";
 
 const certs = [
@@ -14,6 +15,14 @@ const certs = [
     detail: "ID: 119171448",
     image: sixSigmaBadge,
     featured: true,
+  },
+  {
+    name: "LAI Lean Academy",
+    org: "Northeastern University · IE 5617",
+    date: "Spring 2026",
+    detail: "Lean Manufacturing Training",
+    image: leanAcademyBadge,
+    featured: false,
   },
   {
     name: "Graduate Leadership Institute (LEAD360)",
@@ -53,7 +62,7 @@ const CertCard = ({ cert, i, isInView }: { cert: typeof certs[0]; i: number; isI
         ref={ref}
         onMouseMove={onMouseMove}
         onMouseLeave={onMouseLeave}
-        className={`card-3d p-6 text-center h-full !overflow-visible relative ${cert.featured ? "ring-1 ring-primary/40 mt-3" : ""}`}
+        className={`card-3d p-6 text-center h-full !overflow-visible relative ${cert.featured ? "border border-primary mt-3" : ""}`}
       >
         {cert.featured && (
           <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-xs px-3 py-1 rounded-full font-semibold z-20 shadow-lg shadow-primary/20">
@@ -84,7 +93,7 @@ const CertificationsSection = () => {
 
   return (
     <section id="certifications" className="section-padding" ref={ref}>
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -95,7 +104,7 @@ const CertificationsSection = () => {
           <h2 className="font-heading text-4xl md:text-5xl text-foreground mt-3">Certifications</h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6 mb-8 pt-4 overflow-visible">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12 pt-4 overflow-visible">
           {certs.map((cert, i) => (
             <CertCard key={cert.name} cert={cert} i={i} isInView={isInView} />
           ))}
@@ -105,14 +114,17 @@ const CertificationsSection = () => {
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ delay: 0.5, duration: 0.5 }}
-          className="flex flex-wrap items-center justify-center gap-3"
+          className="text-center"
         >
-          {additionalCerts.map((c) => (
-            <span key={c} className="inline-flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full bg-card border border-border text-muted-foreground hover:border-primary/30 transition-colors cursor-default">
-              <Award size={12} className="text-primary" />
-              {c}
-            </span>
-          ))}
+          <span className="text-xs font-semibold text-primary uppercase tracking-[0.3em] block mb-4">Additional Coursework</span>
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            {additionalCerts.map((c) => (
+              <span key={c} className="inline-flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full bg-card border border-border text-muted-foreground hover:border-primary/30 transition-colors cursor-default">
+                <Award size={12} className="text-primary" />
+                {c}
+              </span>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>
