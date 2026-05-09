@@ -1,112 +1,102 @@
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState } from "react";
-import { ChevronRight, CheckCircle2, Search, BarChart3, Users, Wrench, BookOpen, TrendingDown, Zap } from "lucide-react";
+import { ChevronRight, CheckCircle2, Search, BarChart3, Users, Wrench, BookOpen, TrendingDown } from "lucide-react";
 import { useTilt } from "@/hooks/useTilt";
+import sappi3uc from "@/assets/sappi-3uc.jpg";
 
-/* ─── DMAIC Phases ─── */
 const phases = [
   {
     id: "define",
     label: "Define",
-    color: "bg-primary",
-    summary: "Scoped the problem and set project goals",
+    summary: "Scoped the project and locked the baseline.",
     details: [
-      "Identified startup waste on the 3UC UltraCast coating line as a key cost driver",
-      "Defined project scope: reduce startup material waste and associated costs",
-      "Set target: measurable waste reduction with quantifiable savings",
-      "Created project charter with stakeholder alignment",
+      "Targeted the 3UC UltraCast coater after prior-year startup waste data ranked it the highest cost driver",
+      "Defined project scope: reduce startup material waste on 3UC coater specifically",
+      "Set measurable target tied to NET_LBS reduction with quantifiable annual savings",
+      "Aligned project charter with operations leadership before kickoff",
     ],
   },
   {
     id: "measure",
     label: "Measure",
-    color: "bg-accent",
-    summary: "Established baselines from production data",
+    summary: "Pulled the data the line was already generating.",
     details: [
-      "Collected and cleaned 100,000+ rows from PI Vision and Braincube",
-      "Analyzed 339 startup events across multiple product lines",
-      "Established statistical baselines for waste metrics using Python and Minitab",
-      "Mapped key process parameters: roll speed, coatweight, viscosity",
+      "Pulled 339 startup events and 100,000+ rows of production data from Braincube and PI Vision",
+      "Established baseline NET_LBS waste profile per startup across operators, shifts, and grades",
+      "Validated data quality and removed outlier events caused by unrelated line stops",
     ],
   },
   {
     id: "analyze",
     label: "Analyze",
-    color: "bg-primary",
-    summary: "Identified root causes through statistical analysis",
+    summary: "Found what was actually driving the variation.",
     details: [
-      "Performed ANOVA testing (p=0.895 for shift effect — no significant difference)",
-      "Correlation analysis: r=0.905 for NET_LBS vs Time, confirming linear relationship",
-      "Identified AutoTurnup as critical variable reducing waste by ~12%",
-      "Analyzed centerlining data to find root causes of startup inefficiencies",
+      "Ran ANOVA on shift, operator, and product grade effects (p=0.895 for shift effect)",
+      "Correlation analysis on NET_LBS vs Time returned r=0.905, startup duration was the lever",
+      "Identified AutoTurnup as the critical control variable, accounting for ~12% of waste",
     ],
   },
   {
     id: "improve",
     label: "Improve",
-    color: "bg-accent",
-    summary: "Implemented solutions and validated results",
+    summary: "Built width-specific targets the operators could hit.",
     details: [
-      "Created width-specific targets: 56\" at 186 lbs, 65.5\" at 198 lbs, 86.5\" at 265 lbs",
-      "Developed operator training recommendations based on Pareto analysis",
-      "Validated 18% waste reduction on one coater",
-      "Projected $76K+ in annual cost savings",
+      "Developed AutoTurnup targets by product width: 56\" at 186 lbs, 65.5\" at 198 lbs, 86.5\" at 265 lbs",
+      "Validated 18% startup waste reduction projection against the new targets",
+      "Translated to $76,000 in projected annual savings, signed off by operations leadership",
     ],
   },
   {
     id: "control",
     label: "Control",
-    color: "bg-primary",
-    summary: "Built sustainability systems for lasting impact",
+    summary: "Drafted the control plan; full Control phase ran past my co-op end date.",
     details: [
-      "Built SPC dashboards and I-MR control charts for ongoing monitoring",
-      "Developed standardized operating procedures for startup processes",
-      "Created weekly SQC executive reports tracking viscosity, coatweight, and glycol metrics",
-      "Established process capability baselines for sustained stability across 3 coating lines",
+      "Built the SPC monitoring plan and reaction protocol for AutoTurnup deviations",
+      "Documented standardized startup procedure for operator handoff",
+      "Recommended c-charts for ongoing waste tracking; full Control phase implementation continued under the Sappi team after my co-op ended",
     ],
   },
 ];
 
-/* ─── Sappi Other Projects ─── */
 const sappiProjects = [
   {
     icon: Search,
     title: "LSV Event Root Cause Analysis",
     metrics: ["17 defect events", "2 product lines"],
-    description: "Root cause investigation across 17 LSV defect events on the coating line.",
-    expandedDesc: "Identified gravure roll speed differentials as the primary cause of LSV coating defects. Collaborated with production engineers using Braincube and PI Vision for real-time process data analysis across 2 product lines.",
+    description: "Root cause investigation across 17 LSV defect events on the coating line. Identified gravure roll speed differentials as the primary cause using Braincube and PI Vision.",
+    outcome: "Findings narrowed the failure modes and informed the corrective action plan.",
     tags: ["Root Cause Analysis", "Braincube", "PI Vision"],
   },
   {
     icon: BarChart3,
     title: "SQC Executive Reporting Framework",
     metrics: ["3 coaters", "15-point rolling charts"],
-    description: "Weekly quality metrics tracking across 3 coating lines for leadership.",
-    expandedDesc: "Developed weekly SQC executive reports tracking viscosity, coatweight, and glycol metrics using 15-point rolling averages. Provided leadership with actionable insights for coating process decisions across all 3 coaters.",
-    tags: ["Quality Metrics", "Executive Reports", "Viscosity/Coatweight/Glycol"],
+    description: "Weekly SQC reports tracking viscosity, coatweight, and glycol metrics across 3 coating lines using 15-point rolling averages.",
+    outcome: "Adopted by the UltraCast leadership team for weekly review cadence.",
+    tags: ["Quality Metrics", "Executive Reports", "Viscosity / Coatweight / Glycol"],
   },
   {
     icon: Users,
     title: "Operator Performance Analytics",
-    metrics: ["15+ operators benchmarked", "20% waste gap", "5 training targets"],
-    description: "Performance benchmarking system using I-MR charts and Pareto analysis.",
-    expandedDesc: "Benchmarked 15+ operators using I-MR control charts. Identified a 20% waste gap between top and bottom performers. Used Pareto analysis to select 5 operators for targeted training intervention.",
+    metrics: ["15 operators benchmarked", "20% gap", "5 training targets"],
+    description: "Benchmarked 15 operators on startup waste using I-MR charts and Pareto analysis. Surfaced a 20% performance gap and built five operator-specific training targets from the data.",
+    outcome: "Surfaced a 20% performance gap and produced five operator-specific training targets.",
     tags: ["I-MR Charts", "Pareto Analysis", "Operator Training"],
   },
   {
     icon: Wrench,
     title: "5S Implementation",
     metrics: ["2 areas", "27-item audit", "8-week rollout"],
-    description: "Lean manufacturing initiative across the UltraCast department.",
-    expandedDesc: "Implemented 5S workplace organization across 2 areas with a 27-item audit checklist. Completed full rollout over 8 weeks with standardized procedures for sustained compliance.",
+    description: "Set up 5S audit checklists and visual standards across UltraCast coating lines, sustained through quarterly Lean reviews.",
+    outcome: "Audit checklists held through quarterly Lean reviews.",
     tags: ["Lean", "5S", "Audit Checklists"],
   },
   {
     icon: BookOpen,
     title: "Co-op Onboarding Program",
-    metrics: ["8-day program", "68+ tasks", "~50% faster onboarding"],
-    description: "Structured training program with interactive HTML portal.",
-    expandedDesc: "Authored comprehensive onboarding framework with interactive HTML portal. Documented 68+ tasks across an 8-day program, standardizing SOPs, training guides, daily quality reports, and weekly executive summaries. Estimated ~50% faster onboarding for future co-ops.",
+    metrics: ["8-day program", "68+ tasks"],
+    description: "Authored onboarding framework with interactive HTML portal documenting 68+ tasks across an 8-day program. SOPs, training guides, daily quality reports, and weekly executive summaries included.",
+    outcome: "Cut onboarding ramp time roughly 50%; still in use by incoming co-ops.",
     tags: ["HTML Portal", "SOPs", "Training Framework"],
   },
 ];
@@ -126,7 +116,6 @@ const AnimatedStat = ({ val, label, inView, delay = 0 }: { val: string; label: s
 );
 
 const ProjectCard = ({ proj, i, isInView }: { proj: typeof sappiProjects[0]; i: number; isInView: boolean }) => {
-  const [expanded, setExpanded] = useState(false);
   const { ref, onMouseMove, onMouseLeave } = useTilt(5);
 
   return (
@@ -134,21 +123,20 @@ const ProjectCard = ({ proj, i, isInView }: { proj: typeof sappiProjects[0]; i: 
       initial={{ opacity: 0, y: 20 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ delay: i * 0.08, duration: 0.5 }}
+      className="h-full"
     >
       <div
         ref={ref}
         onMouseMove={onMouseMove}
         onMouseLeave={onMouseLeave}
-        className="card-3d p-6 h-full cursor-pointer"
-        onClick={() => setExpanded(!expanded)}
+        className="card-3d p-6 h-full min-h-[340px] flex flex-col"
       >
-        <div className="relative z-10">
+        <div className="relative z-10 flex flex-col h-full">
           <div className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center mb-4">
             <proj.icon size={20} className="text-primary" />
           </div>
           <h3 className="font-heading text-lg text-foreground mb-2">{proj.title}</h3>
 
-          {/* Metric pills */}
           <div className="flex flex-wrap gap-1.5 mb-3">
             {proj.metrics.map((m) => (
               <span key={m} className="text-xs px-2 py-0.5 rounded-full bg-primary/10 text-primary font-semibold border border-primary/20">
@@ -157,22 +145,19 @@ const ProjectCard = ({ proj, i, isInView }: { proj: typeof sappiProjects[0]; i: 
             ))}
           </div>
 
-          <p className="text-sm text-muted-foreground leading-relaxed">
-            {expanded ? proj.expandedDesc : proj.description}
+          <p className="text-sm text-muted-foreground leading-relaxed">{proj.description}</p>
+
+          <p className="text-sm text-foreground/90 leading-relaxed mt-3 pt-3 border-t border-border/50 italic">
+            {proj.outcome}
           </p>
 
-          <div className="flex flex-wrap gap-2 mt-4">
+          <div className="flex flex-wrap gap-2 mt-4 mt-auto pt-4">
             {proj.tags.map((tag) => (
               <span key={tag} className="text-xs px-2.5 py-1 rounded-full bg-secondary text-muted-foreground border border-border">
                 {tag}
               </span>
             ))}
           </div>
-
-          <button className="mt-3 flex items-center gap-1 text-xs font-medium text-primary">
-            <Zap size={12} />
-            {expanded ? "Less" : "Details"}
-          </button>
         </div>
       </div>
     </motion.div>
@@ -188,11 +173,9 @@ const DMAICSection = () => {
 
   return (
     <section id="dmaic" className="section-padding relative" ref={ref}>
-      {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/20 to-background pointer-events-none" />
 
       <div className="max-w-6xl mx-auto relative z-10">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -208,12 +191,32 @@ const DMAICSection = () => {
           </p>
         </motion.div>
 
-        {/* Results banner */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-          <AnimatedStat val="$76K+" label="Projected Annual Savings" inView={isInView} delay={0.1} />
-          <AnimatedStat val="18%" label="Validated Waste Reduction" inView={isInView} delay={0.2} />
-          <AnimatedStat val="339" label="Events Analyzed" inView={isInView} delay={0.3} />
-          <AnimatedStat val="~12%" label="AutoTurnup Impact" inView={isInView} delay={0.4} />
+        {/* Stats + image */}
+        <div className="grid lg:grid-cols-3 gap-6 mb-12 items-stretch">
+          <div className="lg:col-span-2 grid grid-cols-2 md:grid-cols-4 gap-4">
+            <AnimatedStat val="$76K+" label="Projected Annual Savings" inView={isInView} delay={0.1} />
+            <AnimatedStat val="18%" label="Validated Waste Reduction" inView={isInView} delay={0.2} />
+            <AnimatedStat val="339" label="Events Analyzed" inView={isInView} delay={0.3} />
+            <AnimatedStat val="~12%" label="AutoTurnup Impact" inView={isInView} delay={0.4} />
+          </div>
+          <motion.figure
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ delay: 0.4, duration: 0.6 }}
+            className="card-3d p-2 flex flex-col"
+          >
+            <div className="rounded-xl overflow-hidden border border-border/50">
+              <img
+                src={sappi3uc}
+                alt="Pankaj on the 3UC UltraCast coating line at Sappi North America"
+                className="w-full h-44 object-cover"
+                loading="lazy"
+              />
+            </div>
+            <figcaption className="text-xs text-muted-foreground text-center mt-2 px-2 pb-1">
+              3UC UltraCast Coating Line, Sappi North America, Westbrook, Maine.
+            </figcaption>
+          </motion.figure>
         </div>
 
         {/* DMAIC Tabs */}
@@ -223,25 +226,28 @@ const DMAICSection = () => {
           transition={{ delay: 0.3, duration: 0.5 }}
         >
           <div className="flex gap-1.5 mb-6 overflow-x-auto pb-2">
-            {phases.map((phase, i) => (
-              <button
-                key={phase.id}
-                onClick={() => setActivePhase(phase.id)}
-                className={`flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold transition-all duration-300 whitespace-nowrap border ${
-                  activePhase === phase.id
-                    ? "bg-primary text-primary-foreground border-primary shadow-lg shadow-primary/20 scale-[1.03]"
-                    : "bg-card text-muted-foreground border-border hover:text-foreground hover:border-primary/30 hover:bg-secondary"
-                }`}
-              >
-                <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
-                  activePhase === phase.id ? "bg-primary-foreground/20" : "bg-muted"
-                }`}>
-                  {i + 1}
-                </span>
-                {phase.label}
-                {i < 4 && <ChevronRight size={14} className="text-inherit opacity-40" />}
-              </button>
-            ))}
+            {phases.map((phase, i) => {
+              const active = activePhase === phase.id;
+              return (
+                <button
+                  key={phase.id}
+                  onClick={() => setActivePhase(phase.id)}
+                  className={`flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold transition-all duration-300 whitespace-nowrap border ${
+                    active
+                      ? "bg-primary text-primary-foreground border-primary shadow-lg shadow-primary/20 scale-[1.03]"
+                      : "bg-card text-white/70 border-primary/30 hover:text-foreground hover:border-primary/60 hover:bg-secondary"
+                  }`}
+                >
+                  <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
+                    active ? "bg-primary-foreground/20" : "bg-primary text-primary-foreground"
+                  }`}>
+                    {i + 1}
+                  </span>
+                  {phase.label}
+                  {i < 4 && <ChevronRight size={14} className="text-inherit opacity-40" />}
+                </button>
+              );
+            })}
           </div>
 
           <AnimatePresence mode="wait">
@@ -275,10 +281,8 @@ const DMAICSection = () => {
           </AnimatePresence>
         </motion.div>
 
-        {/* Divider */}
         <div className="section-divider my-16" />
 
-        {/* Other Sappi Projects */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -293,13 +297,15 @@ const DMAICSection = () => {
             Additional Contributions
           </h3>
           <p className="text-sm text-muted-foreground mt-2">
-            Five additional projects completed during the 6-month co-op, each delivering measurable impact.
+            Five additional projects completed during the 6-month co-op.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 justify-items-center">
           {sappiProjects.map((proj, i) => (
-            <ProjectCard key={proj.title} proj={proj} i={i} isInView={isInView} />
+            <div key={proj.title} className={`w-full ${i === 3 ? "lg:col-start-1 lg:col-end-2 lg:ml-auto" : ""} ${i === 4 ? "lg:col-end-4 lg:mr-auto" : ""}`}>
+              <ProjectCard proj={proj} i={i} isInView={isInView} />
+            </div>
           ))}
         </div>
       </div>
