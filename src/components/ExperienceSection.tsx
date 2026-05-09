@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
-import { Briefcase, MapPin, Calendar, ChevronDown, ChevronUp } from "lucide-react";
+import { useRef } from "react";
+import { Briefcase, MapPin, Calendar } from "lucide-react";
 
 const experiences = [
   {
@@ -10,19 +10,12 @@ const experiences = [
     location: "Westbrook, Maine",
     period: "Jul 2025 – Dec 2025",
     highlights: [
-      "Led Ultracast startup waste reduction project using DMAIC methodology, performing statistical analysis to establish baselines and validate an 18% reduction target with projected annual savings of $76,000",
-      "Analyzed 339 startup events and 100,000+ rows of production data using Python and Minitab to identify root causes of waste variation across operators, shifts, and product grades",
-      "Performed ANOVA testing (p=0.895 for shift effect) and correlation analysis (r=0.905 for NET_LBS vs Time) to isolate key process variables",
-      "Identified AutoTurnup as critical variable reducing waste by ~12%; developed width-specific targets (56\" at 186 lbs, 65.5\" at 198 lbs, 86.5\" at 265 lbs)",
-    ],
-    expandedHighlights: [
-      "Built statistical control charts and capability analyses in Minitab to monitor coating process performance",
-      "Collaborated with production engineers and operators to troubleshoot coating defects using Braincube and PI Vision",
-      "Conducted LSV root cause analysis across 17 defect events, identifying gravure roll speed differentials as primary cause",
-      "Developed weekly SQC executive reports tracking viscosity, coatweight, and glycol metrics across 3 coating lines",
-      "Created operator performance benchmarking using I-MR control charts; identified 5 operators for targeted training via Pareto analysis",
-      "Implemented 5S workplace organization, developing audit checklists and standardized procedures",
-      "Authored co-op onboarding framework documenting 68+ tasks across 8-day training program with interactive HTML portal",
+      "Projected $76,000 in annual savings by leading DMAIC-driven process optimization on the 3UC coating line, validating an 18% startup waste reduction target with operations leadership.",
+      "Shaped new 3UC process controls adopted by the coating team after ANOVA and regression isolated root causes of variation across operator, shift, and grade variables.",
+      "Surfaced special cause variation in coatweight and viscosity through Minitab SPC charts and capability analyses across UltraCast coater lines.",
+      "Accelerated coating defect diagnosis through real-time monitoring of Braincube and PI Vision dashboards.",
+      "Sustained 5S adoption with audit checklists and visual standards passing quarterly Lean Manufacturing reviews.",
+      "Authored SOPs for daily quality reports and weekly executive summaries, adopted by incoming co-ops.",
     ],
   },
   {
@@ -32,13 +25,10 @@ const experiences = [
     location: "Faridabad, India",
     period: "Mar 2022 – Dec 2023",
     highlights: [
-      "Spearheaded process optimization, reducing production costs by 8% through material waste analysis and streamlined machine operations",
-      "Designed and optimized AutoCAD layouts for stainless steel kitchen equipment production",
-      "Implemented DFMEA techniques, improving reliability and reducing defects by 5% in fabricated products",
-    ],
-    expandedHighlights: [
-      "Optimized operations of welding, shearing, bending, drilling, and buffing machines for high-precision manufacturing",
-      "Translated customer specifications into production-ready drawings, reducing revision cycles between engineering and shop floor",
+      "Cut production costs 8% by tracing material waste and cycle time inefficiencies across steel fabrication operations.",
+      "Integrated DFMEA into fabrication workflows, lowering defect rates by 5% and improving first-pass yield.",
+      "Optimized client-to-shop-floor handoff by translating customer specs into production-ready AutoCAD drawings.",
+      "Compressed design-to-production rework on recurring product variants through standardized work instructions.",
     ],
   },
   {
@@ -48,32 +38,14 @@ const experiences = [
     location: "Sonipat, India",
     period: "Jul 2021 – Nov 2021",
     highlights: [
-      "Streamlined material flow, boosting production efficiency by 4% and minimizing delays in brake pad manufacturing",
-      "Used SAP PP and Excel to manage production schedules, track inventory, and ensure material availability",
-      "Performed Gemba walks to identify bottlenecks and improved processes with Kanban methodology",
+      "Improved production efficiency by 4% by restructuring material flow in brake pad manufacturing.",
+      "Managed production schedules and inventory through SAP PP, keeping materials on the line through shift changes.",
+      "Identified bottlenecks through Gemba walks and ran Kanban pulls that reduced WIP buildup.",
     ],
-    expandedHighlights: [
-      "Led a team of six, coordinating workflow and resource allocation to enhance productivity and meet targets",
-    ],
-  },
-  {
-    title: "Intern",
-    department: "Manufacturing Operations",
-    company: "GSK (GlaxoSmithKline)",
-    location: "Sonipat, India",
-    period: "Jul 2019 – Aug 2019",
-    highlights: [
-      "Improved raw material handling workflows, improving productivity and efficiency in pharmaceutical manufacturing",
-      "Advanced procurement processes, reducing administrative inefficiencies and strengthening supplier relationships",
-    ],
-    expandedHighlights: [],
   },
 ];
 
 const ExperienceCard = ({ exp, i, isInView }: { exp: typeof experiences[0]; i: number; isInView: boolean }) => {
-  const [expanded, setExpanded] = useState(false);
-  const hasMore = exp.expandedHighlights.length > 0;
-
   return (
     <motion.div
       initial={{ opacity: 0, x: -20 }}
@@ -81,7 +53,6 @@ const ExperienceCard = ({ exp, i, isInView }: { exp: typeof experiences[0]; i: n
       transition={{ delay: i * 0.15, duration: 0.5 }}
       className="relative md:pl-14"
     >
-      {/* Timeline dot */}
       <div className="absolute left-[12px] top-2 w-4 h-4 rounded-full border-[3px] border-primary bg-background hidden md:block shadow-sm shadow-primary/30" />
 
       <div className="card-3d p-6 hover:-translate-y-1 transition-all duration-400">
@@ -107,27 +78,7 @@ const ExperienceCard = ({ exp, i, isInView }: { exp: typeof experiences[0]; i: n
                 {h}
               </li>
             ))}
-            {expanded && exp.expandedHighlights.map((h, j) => (
-              <motion.li
-                key={`exp-${j}`}
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                className="flex items-start gap-2 text-sm text-muted-foreground"
-              >
-                <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0 shadow-sm shadow-primary/50" />
-                {h}
-              </motion.li>
-            ))}
           </ul>
-          {hasMore && (
-            <button
-              onClick={() => setExpanded(!expanded)}
-              className="mt-4 flex items-center gap-1 text-xs font-medium text-primary hover:text-primary/80 transition-colors"
-            >
-              {expanded ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
-              {expanded ? "Show less" : `Show ${exp.expandedHighlights.length} more`}
-            </button>
-          )}
         </div>
       </div>
     </motion.div>
@@ -156,6 +107,8 @@ const ExperienceSection = () => {
 
         <div className="relative">
           <div className="absolute left-[19px] top-2 bottom-2 w-[2px] bg-gradient-to-b from-primary/50 via-border to-transparent hidden md:block" />
+          {/* Timeline terminal cap */}
+          <div className="absolute left-[12px] -bottom-1 w-4 h-4 rounded-full bg-primary border-[3px] border-background shadow-sm shadow-primary/40 hidden md:block" />
           <div className="space-y-10">
             {experiences.map((exp, i) => (
               <ExperienceCard key={exp.company + exp.title} exp={exp} i={i} isInView={isInView} />

@@ -26,7 +26,7 @@ const ContactSection = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href="mailto:bosepankaj.ie@gmail.com"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium text-sm hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-0.5 transition-all duration-300"
+              className="inline-flex items-center gap-2 px-8 py-3.5 mx-2 sm:mx-4 bg-primary text-primary-foreground rounded-lg font-semibold text-sm shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 hover:-translate-y-0.5 transition-all duration-300"
             >
               <Mail size={16} />
               bosepankaj.ie@gmail.com

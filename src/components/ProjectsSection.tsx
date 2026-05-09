@@ -1,29 +1,20 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { FlaskConical, ShoppingCart, Truck } from "lucide-react";
+import { FlaskConical, ShoppingCart } from "lucide-react";
 import { useTilt } from "@/hooks/useTilt";
 
 const academicProjects = [
   {
     icon: FlaskConical,
     title: "Quality Optimization Using DMAIC & DOE",
-    description: "Slashed defect rates 25% through Taguchi design in electronic component manufacturing.",
-    expandedDesc: "Validated sampling interval modifications with robust statistical testing. Engineered real-time defect tracking dashboards. Identified critical process variables through fishbone analysis targeting maximum ROI.",
+    description: "Slashed defect rates 25% through Taguchi design in electronic component manufacturing. Validated sampling interval modifications with statistical testing and built real-time defect tracking dashboards.",
     tags: ["25% Defect Reduction", "Taguchi DOE", "Northeastern"],
   },
   {
     icon: ShoppingCart,
     title: "Bank Marketing Optimization",
-    description: "Built 5 ML models achieving 85.1% accuracy with 17% false positive reduction.",
-    expandedDesc: "Delivered end-to-end data pipeline from preprocessing to deployment-ready insights. Leveraged ensemble learning (Random Forest, XGBoost) for complex, high-dimensional datasets.",
+    description: "Built 5 ML models achieving 85.1% accuracy with 17% false positive reduction. Same statistical toolkit used in process control: hypothesis testing, model validation, false-positive cost analysis.",
     tags: ["85.1% Accuracy", "ML Pipeline", "Northeastern"],
-  },
-  {
-    icon: Truck,
-    title: "Supply Chain Optimization for Walmart",
-    description: "Proposed solutions to reduce errors by 25% and operational costs by 15%.",
-    expandedDesc: "Conducted data analysis to identify gaps in supply chain traceability and operational efficiency. Developed actionable recommendations for process improvement.",
-    tags: ["25% Error Reduction", "15% Cost Savings", "Northeastern"],
   },
 ];
 
@@ -67,7 +58,7 @@ const ProjectsSection = () => {
 
   return (
     <section id="projects" className="section-padding" ref={ref}>
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -81,7 +72,7 @@ const ProjectsSection = () => {
           <p className="text-sm text-muted-foreground mt-2">Northeastern University · 2024–2025</p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-5">
+        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {academicProjects.map((proj, i) => (
             <AcademicCard key={proj.title} proj={proj} i={i} isInView={isInView} />
           ))}
