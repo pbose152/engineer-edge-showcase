@@ -79,7 +79,7 @@ const TestimonialsSection = () => {
           <h2 className="font-heading text-4xl md:text-5xl text-foreground mt-3">What Colleagues Say</h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="flex flex-col gap-6">
           {testimonials.map((t, i) => (
             <TestimonialCard key={t.name} t={t} i={i} isInView={isInView} />
           ))}
