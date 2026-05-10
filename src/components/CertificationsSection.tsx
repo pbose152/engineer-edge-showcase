@@ -5,7 +5,34 @@ import sixSigmaBadge from "@/assets/six-sigma-badge.png";
 import aiBadge from "@/assets/ai-badge.png";
 import leadershipBadge from "@/assets/leadership-badge.png";
 import leanAcademyBadge from "@/assets/lean-academy-badge.png";
+import certSixSigma from "@/assets/cert-sixsigma.png";
+import certLean from "@/assets/cert-lean.png";
+import certLead360 from "@/assets/cert-lead360.png";
 import { useTilt } from "@/hooks/useTilt";
+
+const verifiedDocs = [
+  {
+    image: certSixSigma,
+    title: "Six Sigma Green Belt",
+    issuer: "Institute of Industrial and Systems Engineers (IISE)",
+    date: "October 2024",
+    detail: "Credential ID: 119171448",
+  },
+  {
+    image: certLean,
+    title: "LAI Lean Academy",
+    issuer: "Northeastern University · IE 5617",
+    date: "Spring 2026",
+    award: "Received 1st Student Choice Award for Best Project and Presentation",
+  },
+  {
+    image: certLead360,
+    title: "Graduate Leadership Institute (LEAD360)",
+    issuer: "Northeastern University",
+    date: "Spring 2026",
+    detail: "Perfect Attendance",
+  },
+];
 
 const certs = [
   {
