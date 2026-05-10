@@ -53,15 +53,15 @@ const experiences = [
   },
   {
     title: "Intern",
-    department: "Manufacturing Operations",
-    company: "GSK (GlaxoSmithKline)",
+    department: "Horlicks Manufacturing Plant",
+    company: "GSK Consumer Healthcare",
     location: "Sonipat, India",
     period: "Jul 2019 – Aug 2019",
     initialVisible: 3,
     highlights: [
-      "Improved raw material handling workflows on the pharmaceutical manufacturing floor during a summer rotation at GSK; suggested layout adjustments that reduced manual transfer steps in the warehouse-to-line handoff.",
+      "Improved raw material handling workflows on the Horlicks production floor during a summer rotation at GSK Consumer Healthcare; suggested layout adjustments that reduced manual transfer steps in the warehouse-to-line handoff.",
       "Streamlined routine procurement steps alongside the GSK procurement team, contributing to faster turnaround on supplier paperwork and tighter coordination with regular vendors.",
-      "First exposure to a GMP-regulated pharmaceutical manufacturing environment, building foundational context for later Six Sigma coursework at Northeastern and quality engineering work at Sappi.",
+      "First exposure to a regulated food and beverage manufacturing environment, including food safety and quality documentation practices that built foundational context for later Six Sigma coursework at Northeastern and quality engineering work at Sappi.",
     ],
   },
 ];

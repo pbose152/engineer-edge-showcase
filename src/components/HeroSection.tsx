@@ -67,11 +67,12 @@ const HeroSection = () => {
             </h1>
 
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-4 max-w-xl">
-              Industrial engineer who{" "}
-              <span className="text-foreground font-semibold">chases variation in the data</span>{" "}
-              and traces it back to the line. Six months at{" "}
-              <span className="text-foreground font-semibold">Sappi on the 3UC coater</span>. Three industries:{" "}
-              <span className="text-foreground font-semibold">paper coating, discrete fabrication, automotive</span>.
+              Industrial engineer with hands-on experience across{" "}
+              <span className="text-foreground font-semibold">paper coating, discrete fabrication, and automotive manufacturing</span>.{" "}
+              <span className="text-foreground font-semibold">Six Sigma Green Belt</span>{" "}
+              and{" "}
+              <span className="text-foreground font-semibold">Lean Academy trained</span>,{" "}
+              applying DMAIC, SPC, and root cause analysis to real production work.
             </p>
 
             <p className="text-sm text-muted-foreground mb-10 max-w-xl">
