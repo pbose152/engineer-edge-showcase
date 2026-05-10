@@ -5,7 +5,34 @@ import sixSigmaBadge from "@/assets/six-sigma-badge.png";
 import aiBadge from "@/assets/ai-badge.png";
 import leadershipBadge from "@/assets/leadership-badge.png";
 import leanAcademyBadge from "@/assets/lean-academy-badge.png";
+import certSixSigma from "@/assets/cert-sixsigma.png";
+import certLean from "@/assets/cert-lean.png";
+import certLead360 from "@/assets/cert-lead360.png";
 import { useTilt } from "@/hooks/useTilt";
+
+const verifiedDocs = [
+  {
+    image: certSixSigma,
+    title: "Six Sigma Green Belt",
+    issuer: "Institute of Industrial and Systems Engineers (IISE)",
+    date: "October 2024",
+    detail: "Credential ID: 119171448",
+  },
+  {
+    image: certLean,
+    title: "LAI Lean Academy",
+    issuer: "Northeastern University · IE 5617",
+    date: "Spring 2026",
+    award: "Received 1st Student Choice Award for Best Project and Presentation",
+  },
+  {
+    image: certLead360,
+    title: "Graduate Leadership Institute (LEAD360)",
+    issuer: "Northeastern University",
+    date: "Spring 2026",
+    detail: "Perfect Attendance",
+  },
+];
 
 const certs = [
   {
@@ -123,6 +150,49 @@ const CertificationsSection = () => {
                 <Award size={12} className="text-primary" />
                 {c}
               </span>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Verified Documents sub-section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.6, duration: 0.6 }}
+          className="mt-20"
+        >
+          <span className="text-xs font-semibold text-primary uppercase tracking-[0.3em]">Certificates</span>
+          <h3 className="font-heading text-2xl md:text-3xl text-foreground mt-3 mb-8">Verified Documents</h3>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {verifiedDocs.map((doc, i) => (
+              <motion.div
+                key={doc.title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.7 + i * 0.1, duration: 0.5 }}
+                className="card-3d p-4 flex flex-col"
+              >
+                <div className="rounded-lg overflow-hidden border border-border/50 bg-white/95 mb-4 flex items-center justify-center p-2">
+                  <img
+                    src={doc.image}
+                    alt={`${doc.title} certificate`}
+                    className="w-full h-auto object-contain max-h-[320px]"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="relative z-10 px-1">
+                  <h4 className="font-heading text-base text-foreground">{doc.title}</h4>
+                  <p className="text-xs text-muted-foreground mt-1">Issued by {doc.issuer}</p>
+                  <p className="text-xs text-muted-foreground mt-0.5">{doc.date}</p>
+                  {doc.detail && (
+                    <p className="text-xs text-primary font-medium mt-1.5">{doc.detail}</p>
+                  )}
+                  {doc.award && (
+                    <p className="text-sm text-primary font-bold mt-2 leading-snug">{doc.award}</p>
+                  )}
+                </div>
+              </motion.div>
             ))}
           </div>
         </motion.div>

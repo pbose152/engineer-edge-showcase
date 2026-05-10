@@ -191,33 +191,33 @@ const DMAICSection = () => {
           </p>
         </motion.div>
 
-        {/* Stats + image */}
-        <div className="grid lg:grid-cols-3 gap-6 mb-12 items-stretch">
-          <div className="lg:col-span-2 grid grid-cols-2 md:grid-cols-4 gap-4">
-            <AnimatedStat val="$76K+" label="Projected Annual Savings" inView={isInView} delay={0.1} />
-            <AnimatedStat val="18%" label="Validated Waste Reduction" inView={isInView} delay={0.2} />
-            <AnimatedStat val="339" label="Events Analyzed" inView={isInView} delay={0.3} />
-            <AnimatedStat val="~12%" label="AutoTurnup Impact" inView={isInView} delay={0.4} />
-          </div>
-          <motion.figure
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ delay: 0.4, duration: 0.6 }}
-            className="card-3d p-2 flex flex-col"
-          >
-            <div className="rounded-xl overflow-hidden border border-border/50">
-              <img
-                src={sappi3uc}
-                alt="Pankaj on the 3UC UltraCast coating line at Sappi North America"
-                className="w-full h-44 object-cover"
-                loading="lazy"
-              />
-            </div>
-            <figcaption className="text-xs text-muted-foreground text-center mt-2 px-2 pb-1">
-              3UC UltraCast Coating Line, Sappi North America, Westbrook, Maine.
-            </figcaption>
-          </motion.figure>
+        {/* Stats row */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+          <AnimatedStat val="$76K+" label="Projected Annual Savings" inView={isInView} delay={0.1} />
+          <AnimatedStat val="18%" label="Validated Waste Reduction" inView={isInView} delay={0.2} />
+          <AnimatedStat val="339" label="Events Analyzed" inView={isInView} delay={0.3} />
+          <AnimatedStat val="~12%" label="AutoTurnup Impact" inView={isInView} delay={0.4} />
         </div>
+
+        {/* Image row */}
+        <motion.figure
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : {}}
+          transition={{ delay: 0.4, duration: 0.6 }}
+          className="card-3d p-3 mx-auto mb-12 w-full lg:w-4/5"
+        >
+          <div className="rounded-xl overflow-hidden border border-border/50 bg-background/40">
+            <img
+              src={sappi3uc}
+              alt="Pankaj at Sappi North America, Westbrook, Maine"
+              className="w-full h-auto max-h-[480px] object-contain"
+              loading="lazy"
+            />
+          </div>
+          <figcaption className="text-xs text-muted-foreground text-center mt-3 px-2 pb-1">
+            Sappi North America · Westbrook, Maine
+          </figcaption>
+        </motion.figure>
 
         {/* DMAIC Tabs */}
         <motion.div
