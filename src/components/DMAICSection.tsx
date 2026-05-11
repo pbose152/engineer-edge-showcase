@@ -81,7 +81,7 @@ const sappiProjects = [
     metrics: ["15 operators benchmarked", "20% gap", "5 training targets"],
     description: "Benchmarked 15 operators on startup waste using Python, I-MR charts, and Pareto analysis. Surfaced a 20% performance gap and built five operator-specific training targets from the data.",
     outcome: "Surfaced a 20% performance gap and produced five operator-specific training targets.",
-    tags: ["I-MR Charts", "Pareto Analysis", "Operator Training"],
+    tags: ["I-MR Charts", "Pareto Analysis", "Operator Training", "Python"],
   },
   {
     icon: Wrench,
