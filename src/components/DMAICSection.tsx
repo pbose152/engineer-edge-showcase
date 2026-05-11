@@ -63,7 +63,7 @@ const sappiProjects = [
     icon: Search,
     title: "LSV Event Root Cause Analysis",
     metrics: ["17 defect events", "2 product lines"],
-    description: "Root cause investigation across 17 LSV defect events on the coating line. Identified gravure roll speed differentials as the primary cause using Braincube and PI Vision.",
+    description: "Root cause investigation across 17 LSV (Linear String Void) defect events on the coating line. Identified gravure roll speed differentials as the primary cause using Braincube and PI Vision.",
     outcome: "Findings narrowed the failure modes and informed the corrective action plan.",
     tags: ["Root Cause Analysis", "Braincube", "PI Vision"],
   },

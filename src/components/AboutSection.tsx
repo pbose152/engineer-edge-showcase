@@ -76,7 +76,7 @@ const AboutSection = () => {
             Built for the Manufacturing Floor
           </h2>
           <p className="text-muted-foreground mt-4 max-w-2xl text-base leading-relaxed">
-            Six months at Sappi taught me to chase variation through the data and back to where it started in the process. The work I do best is finding what's drifting, sizing the impact, and building something that holds after I leave.
+            Six months at Sappi sharpened a method I'd been building across multiple production environments: chase variation through the data and back to where it started in the process. The work I do best is finding what's drifting, sizing the impact, and building something that holds after I leave.
           </p>
         </motion.div>
 
