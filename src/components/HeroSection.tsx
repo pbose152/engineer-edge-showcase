@@ -106,7 +106,7 @@ const HeroSection = () => {
             </div>
 
             <p className="text-xs text-muted-foreground text-center md:text-left mb-10 max-w-xl">
-              Available May 2026 · Process / Quality / Production / Continuous Improvement Engineering
+              Available May 2026 · Process / Quality / Manufacturing / Continuous Improvement Engineering
             </p>
 
             {/* Metrics — anchored visually to hero */}

@@ -20,7 +20,7 @@ const ContactSection = () => {
             Available May 2026
           </h2>
           <p className="text-muted-foreground mb-10 max-w-lg mx-auto">
-            Seeking full-time Process Engineer, Quality Engineer, or Continuous Improvement roles in manufacturing.
+            Seeking full-time Process Engineer, Quality Engineer, Manufacturing Engineer, or Continuous Improvement roles in manufacturing.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
