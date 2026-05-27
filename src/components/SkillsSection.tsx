@@ -12,7 +12,7 @@ const skillGroups = [
   },
   {
     category: "Software & Tools",
-    skills: ["Python (Pandas, NumPy)", "Minitab", "PI Vision", "Braincube", "SAP PP", "AutoCAD", "Excel (Pivot Tables, VBA, Power Query)"],
+    skills: ["Python (Pandas, NumPy)", "Minitab", "PI (Plant Information) System", "Braincube", "SAP PP", "AutoCAD", "Excel (Pivot Tables, VBA, Power Query)"],
   },
   {
     category: "Data Analytics",
