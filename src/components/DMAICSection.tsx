@@ -21,7 +21,7 @@ const phases = [
     label: "Measure",
     summary: "Pulled the data the line was already generating.",
     details: [
-      "Pulled 339 startup events and 100,000+ rows of production data from Braincube and PI Vision",
+      "Pulled 339 startup events and 100,000+ rows of production data from Braincube and PI (Plant Information) System",
       "Established baseline NET_LBS waste profile per startup across operators, shifts, and grades",
       "Validated data quality and removed outlier events caused by unrelated line stops",
     ],
@@ -63,9 +63,9 @@ const sappiProjects = [
     icon: Search,
     title: "LSV Event Root Cause Analysis",
     metrics: ["17 defect events", "2 product lines"],
-    description: "Root cause investigation across 17 LSV (Linear String Voids) defect events on the coating line. Identified gravure roll speed differentials as the primary cause using Python, Braincube, and PI Vision.",
+    description: "Root cause investigation across 17 LSV (Linear String Voids) defect events on the coating line. Identified gravure roll speed differentials as the primary cause using Python, Braincube, and PI (Plant Information) System.",
     outcome: "Findings narrowed the failure modes and informed the corrective action plan.",
-    tags: ["Root Cause Analysis", "Braincube", "PI Vision", "Python"],
+    tags: ["Root Cause Analysis", "Braincube", "PI (Plant Information) System", "Python"],
   },
   {
     icon: BarChart3,
