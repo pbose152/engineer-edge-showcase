@@ -68,7 +68,7 @@ const HeroSection = () => {
 
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-4 max-w-xl">
               Industrial engineer with hands-on experience across{" "}
-              <span className="text-foreground font-semibold">paper coating, discrete fabrication, and automotive manufacturing</span>.{" "}
+              <span className="text-foreground font-semibold">casting and release paper, discrete fabrication, and automotive manufacturing</span>.{" "}
               <span className="text-foreground font-semibold">Six Sigma Green Belt</span>{" "}
               and{" "}
               <span className="text-foreground font-semibold">Lean Academy trained</span>,{" "}
