@@ -138,7 +138,7 @@ const ExperienceSection = () => {
           <span className="text-xs font-semibold text-primary uppercase tracking-[0.3em]">Career</span>
           <h2 className="font-heading text-4xl md:text-5xl text-foreground mt-3">Experience</h2>
           <p className="text-muted-foreground mt-2 text-sm">
-            4 industries · Paper Coating · Discrete Fabrication · Automotive Components · Pharmaceutical
+            4 industries · Casting and Release Paper · Discrete Fabrication · Automotive Components · Pharmaceutical
           </p>
         </motion.div>
 
